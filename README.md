@@ -1,12 +1,13 @@
 # Bad Movie Finder
 
-**Bad Movie Finder** is a simple Python script that scans a media library for video files that may display **incorrect colors** (purple/green tint or distorted tones) on some TVs and media players. These issues most commonly appear with:
+**Bad Movie Finder** is a simple Python script that scans your media library and identifies video files that may need to be **transcoded or remuxed** (e.g., using HandBrake or ffmpeg) due to known color-playback issues. These issues typically appear on some TVs and media players when certain **HEVC / H.265 + Dolby Vision Profile 8** files are played back, often resulting in:
 
-- **HEVC / H.265** video  
-- Containing **Dolby Vision** metadata  
-- Especially **Dolby Vision Profile 8** inside MKV or WebDL releases  
+- purple or green tint  
+- distorted skin tones  
+- washed-out or blown highlights  
+- neon-like or incorrect colors  
 
-The script performs a safe, **read-only** scan of each file using `ffprobe` and outputs a list of potentially problematic titles.
+The script safely scans files using `ffprobe` and flags those most likely to exhibit these problems, helping you locate videos that may need fixing before watching.
 
 ---
 
@@ -18,7 +19,7 @@ Run the script from any OS using:
 py bmv.py "/path/to/your/media/folder"
 ```
 
-This will recursively scan all subfolders.
+This will recursively scan all subfolders inside the target directory.
 
 ---
 
@@ -30,9 +31,9 @@ During the scan, each relevant file is printed with a tag such as:
 - `DV-P7`
 - `HEVC-10bit`
 
-A file called **problem_media.csv** will be created in the working directory.
+A file named **problem_media.csv** will be created in the working directory.
 
-You can open it in Excel or any spreadsheet app and filter on:
+You can open it in Excel or any spreadsheet application and filter on:
 
 - `is_problematic = TRUE` → High-risk files  
 - `dv_profile = 8` → Dolby Vision Profile 8  
@@ -41,13 +42,16 @@ You can open it in Excel or any spreadsheet app and filter on:
 ---
 
 ## Known TVs With Issues  
+*(Informational only — not used by the script)*
 
-These TVs have been reported by users to show incorrect colors (purple/green tint or distorted tones) when playing **HEVC + Dolby Vision Profile 8** content in MKV/WebDL formats.
+Some TVs and devices struggle with Dolby Vision Profile 8 in MKV or WebDL formats. Users have reported issues such as color distortion and purple/green tint when playing these files.
+
+Currently reported:
 
 - **Sony Bravia XBR-65X90CH**  
-  User-reported purple/green tint with some Dolby Vision Profile 8 MKV files.
+  Purple/green tint with certain Dolby Vision Profile 8 MKV files.
 
-If you have a TV or device that consistently misbehaves with DV Profile 8, feel free to open an issue or submit a pull request to have it added to this list.
+If your TV or player consistently has issues with DV Profile 8, feel free to open an issue or submit a pull request to have it added to this list.
 
 ---
 
@@ -65,23 +69,38 @@ On Linux/macOS, install FFmpeg using your package manager.
 This script requires `ffprobe`, which is included with FFmpeg.
 
 Download FFmpeg from the official site:  
-  https://ffmpeg.org/download.html
+ https://ffmpeg.org/download.html
 
 For Windows users, prebuilt static FFmpeg packages (which include `ffprobe.exe`) are available here:  
-  https://www.gyan.dev/ffmpeg/builds/
+ https://www.gyan.dev/ffmpeg/builds/
 
 ---
 
-## Why This Script Exists
+## Why These Files Need Fixing
 
-Some TVs and players mishandle **Dolby Vision Profile 8** when it is remuxed into MKV or other non-standard containers. This can lead to:
+Some TVs and players do not properly interpret Dolby Vision metadata (especially **Profile 8**) when it appears in non-standard or remuxed containers such as MKV. This can lead to:
 
-- Green or purple color casts  
-- Washed-out or blown highlights  
-- Incorrect skin tones  
-- Other color-mapping issues  
+- purple/green color casts  
+- incorrect skin tones  
+- severely inaccurate HDR tone-mapping  
+- neon-like whites or highlights  
 
-This tool helps users quickly identify files that are likely to cause those problems.
+These issues can often be fixed by transcoding or remuxing the file using tools such as:
+
+- **HandBrake**
+- **ffmpeg**
+- **dovi_tool**
+- **MKVToolNix**
+
+Common fixes include:
+
+- stripping Dolby Vision metadata  
+- converting to HDR10  
+- converting to SDR  
+- remuxing from MKV to MP4  
+- re-encoding into a more compatible format  
+
+**Bad Movie Finder helps you identify which files are likely to require this treatment.**
 
 ---
 
@@ -89,8 +108,9 @@ This tool helps users quickly identify files that are likely to cause those prob
 
 If you encounter:
 
-- Additional devices with consistent issues  
-- Other problematic patterns (profiles, containers, flags)  
+- additional devices with consistent issues  
+- new problematic Dolby Vision profiles  
+- other containers or formats that trigger color problems  
 
 Feel free to open an issue or submit a pull request.
 
