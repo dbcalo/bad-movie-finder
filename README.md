@@ -57,6 +57,16 @@ You can open it in Excel or any spreadsheet app and filter on:
 On Windows, place `ffprobe.exe` in the same directory as `bmv.py`.  
 On Linux/macOS, install FFmpeg using your package manager.
 
+### FFmpeg Download
+
+This script requires `ffprobe`, which is included with FFmpeg.
+
+Download FFmpeg from the official site:  
+  https://ffmpeg.org/download.html
+
+For Windows users, prebuilt static FFmpeg packages (which include `ffprobe.exe`) are available here:  
+  https://www.gyan.dev/ffmpeg/builds/
+
 ---
 
 ## Why This Script Exists
