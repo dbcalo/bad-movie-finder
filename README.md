@@ -43,6 +43,18 @@ You can open it in Excel or any spreadsheet app and filter on:
 ## Known TVs With Issues  
 *(Informational only — not used by the script)*
 
+These TVs have been reported by users to show incorrect colors (purple/green tint or distorted tones) when playing **HEVC + Dolby Vision Profile 8** content in MKV/WebDL formats.
+
+- **Sony Bravia XBR-65X90CH**  
+  User-reported purple/green tint with some Dolby Vision Profile 8 MKV files.
+
+If you have a TV or device that consistently misbehaves with DV Profile 8, feel free to open an issue or submit a pull request to have it added to this list.
+
+---
+
+## Known TVs With Issues  
+*(Informational only — not used by the script)*
+
 - **Sony Bravia XBR-65X90CH**  
   User-reported purple/green tint with Dolby Vision Profile 8 in MKV files.
 
