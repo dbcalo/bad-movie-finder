@@ -16,7 +16,7 @@ The script safely scans files using `ffprobe` and flags those most likely to exh
 Run the script from any OS using:
 
 ```bash
-py bmv.py "/path/to/your/media/folder"
+py bmf.py "/path/to/your/media/folder"
 ```
 
 This will recursively scan all subfolders inside the target directory.
@@ -58,10 +58,10 @@ If your TV or player consistently has issues with DV Profile 8, feel free to ope
 ## Requirements
 
 - Python **3.8+**
-- `ffprobe` (place it next to `bmv.py` or ensure it’s on your PATH)
+- `ffprobe` (place it next to `bmf.py` or ensure it’s on your PATH)
 - Read access to your media folder
 
-On Windows, place `ffprobe.exe` in the same directory as `bmv.py`.  
+On Windows, place `ffprobe.exe` in the same directory as `bmf.py`.  
 On Linux/macOS, install FFmpeg using your package manager.
 
 ### FFmpeg Download
