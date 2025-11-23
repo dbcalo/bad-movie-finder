@@ -23,7 +23,7 @@ Known TVs with issues (user-reported):
 
 Example terminal code:
 
-  py bmv.py "/path/to/your/media/folder"
+  py bmf.py "/path/to/your/media/folder"
 
 Output:
 - Prints a summary line per relevant file
@@ -293,3 +293,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
